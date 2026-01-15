@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Cashiely</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --forest: #2d5016;
+        --sage: #7a9b76;
+        --cream: #faf8f3;
+        --white: #ffffff;
+        --gray-50: #f9fafb;
+        --gray-600: #475569;
+        --gray-900: #0f172a;
+        --error: #dc2626;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* HEADER */
+      .header {
+        padding: 1.25rem 2rem;
+        background: var(--white);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .brand {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--forest);
+        text-decoration: none;
+      }
+
+      /* MAIN CONTENT */
+      .main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .login-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--forest);
+        margin-bottom: 0.5rem;
+      }
+
+      .login-subtitle {
+        font-size: 1rem;
+        color: var(--gray-600);
+      }
+
+      /* FORM */
+      .login-form {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--gray-900);
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "DM Sans", sans-serif;
+        transition: border-color 0.2s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--forest);
+      }
+
+      input.error {
+        border-color: var(--error);
+      }
+
+      .error-message {
+        color: var(--error);
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-top: 0.5rem;
+      }
+
+      .forgot-password a {
+        font-size: 0.875rem;
+        color: var(--sage);
+        text-decoration: none;
+      }
+
+      .forgot-password a:hover {
+        color: var(--forest);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 0.875rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--forest);
+        color: var(--white);
+        margin-top: 1.5rem;
+      }
+
+      .btn-primary:hover {
+        background: #1f3810;
+      }
+
+      .btn-primary:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+      }
+
+      /* SECONDARY CTA */
+      .secondary-cta {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: var(--gray-600);
+      }
+
+      .secondary-cta a {
+        color: var(--forest);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .secondary-cta a:hover {
+        text-decoration: underline;
+      }
+
+      /* FOOTER */
+      .footer {
+        padding: 2rem;
+        text-align: center;
+        color: var(--gray-600);
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 768px) {
+        .main {
+          padding: 1rem;
+        }
+
+        .login-form {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-content">
+        <a href="index.html" class="brand">Cashiely</a>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="login-container">
+        <div class="login-header">
+          <h1 class="login-title">Welcome back</h1>
+          <p class="login-subtitle">
+            Log in to continue tracking your expenses
+          </p>
+        </div>
+
+        <div class="login-form">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+              />
+              <div class="error-message" id="emailError">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                autocomplete="current-password"
+              />
+              <div class="error-message" id="passwordError">
+                Password is required
+              </div>
+              <div class="forgot-password">
+                <a href="#">Forgot password?</a>
+              </div>
+            </div>
+
+            <div
+              class="error-message show"
+              id="formError"
+              style="text-align: center; display: none"
+            ></div>
+
+            <button type="submit" class="btn btn-primary">Log In</button>
+          </form>
+
+          <div class="secondary-cta">
+            Don't have an account? <a href="register.html">Create one</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">© 2026 Cashiely. Built with intention.</footer>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const formError = document.getElementById("formError");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Clear previous errors
+        document.querySelectorAll(".error-message").forEach((el) => {
+          el.classList.remove("show");
+        });
+        document.querySelectorAll("input").forEach((el) => {
+          el.classList.remove("error");
+        });
+        formError.style.display = "none";
+
+        let isValid = true;
+
+        // Validate email
+        const email = emailInput.value.trim();
+        if (!email || !email.includes("@")) {
+          emailInput.classList.add("error");
+          document.getElementById("emailError").classList.add("show");
+          isValid = false;
+        }
+
+        // Validate password
+        const password = passwordInput.value;
+        if (!password) {
+          passwordInput.classList.add("error");
+          document.getElementById("passwordError").classList.add("show");
+          isValid = false;
+        }
+
+        if (isValid) {
+          // Store auth token
+          localStorage.setItem("authToken", "demo_token_" + Date.now());
+          localStorage.setItem("userEmail", email);
+
+          // Set default name if not exists
+          if (!localStorage.getItem("userName")) {
+            localStorage.setItem("userName", email.split("@")[0]);
+          }
+
+          // Redirect to dashboard
+          window.location.href = "dashboard.html";
+        }
+      });
+    </script>
+  </body>
+</html>
