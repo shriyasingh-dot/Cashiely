@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — The Green Ledger</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --forest: #2d5016;
+        --sage: #7a9b76;
+        --cream: #faf8f3;
+        --white: #ffffff;
+        --gray-600: #475569;
+        --gray-900: #0f172a;
+        --error: #dc2626;
+        --success: #16a34a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        padding: 1.25rem 2rem;
+        background: var(--white);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .brand {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--forest);
+        text-decoration: none;
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .register-container {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .register-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .register-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--forest);
+        margin-bottom: 0.5rem;
+      }
+
+      .register-subtitle {
+        font-size: 1rem;
+        color: var(--gray-600);
+      }
+
+      .register-form {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--gray-900);
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "DM Sans", sans-serif;
+        transition: border-color 0.2s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--forest);
+      }
+      input.error {
+        border-color: var(--error);
+      }
+
+      .error-message {
+        color: var(--error);
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+
+      .password-strength {
+        margin-top: 0.75rem;
+      }
+
+      .strength-bar {
+        height: 4px;
+        background: #e5e7eb;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .strength-fill {
+        height: 100%;
+        width: 0;
+        transition: all 0.3s;
+        border-radius: 2px;
+      }
+
+      .strength-weak {
+        background: var(--error);
+        width: 33%;
+      }
+      .strength-medium {
+        background: #f59e0b;
+        width: 66%;
+      }
+      .strength-strong {
+        background: var(--success);
+        width: 100%;
+      }
+
+      .strength-text {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 0.875rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--forest);
+        color: var(--white);
+        margin-top: 1.5rem;
+      }
+
+      .btn-primary:hover {
+        background: #1f3810;
+      }
+      .btn-primary:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+      }
+
+      .secondary-cta {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: var(--gray-600);
+      }
+
+      .secondary-cta a {
+        color: var(--forest);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .secondary-cta a:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        padding: 2rem;
+        text-align: center;
+        color: var(--gray-600);
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-content">
+        <a href="index.html" class="brand">The Green Ledger</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="register-container">
+        <div class="register-header">
+          <h1 class="register-title">Create your account</h1>
+          <p class="register-subtitle">
+            Start tracking your expenses in seconds
+          </p>
+        </div>
+
+        <div class="register-form">
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required />
+              <div class="error-message" id="nameError">
+                Please enter your full name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+              <div class="error-message" id="emailError">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" required />
+              <div class="password-strength">
+                <div class="strength-bar">
+                  <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <div class="strength-text" id="strengthText"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" required />
+              <div class="error-message" id="confirmError">
+                Passwords do not match
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Create Account
+            </button>
+          </form>
+
+          <div class="secondary-cta">
+            Already have an account? <a href="login.html">Log in</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      © 2026 The Green Ledger. Built with intention.
+    </footer>
+
+    <script>
+      const passwordInput = document.getElementById("password");
+      const strengthFill = document.getElementById("strengthFill");
+      const strengthText = document.getElementById("strengthText");
+
+      passwordInput.addEventListener("input", function () {
+        const password = this.value;
+        const strength = calculatePasswordStrength(password);
+
+        strengthFill.className = "strength-fill";
+
+        if (password.length === 0) {
+          strengthText.textContent = "";
+          return;
+        }
+
+        if (strength < 3) {
+          strengthFill.classList.add("strength-weak");
+          strengthText.textContent = "Weak password";
+          strengthText.style.color = "#dc2626";
+        } else if (strength < 4) {
+          strengthFill.classList.add("strength-medium");
+          strengthText.textContent = "Medium strength";
+          strengthText.style.color = "#f59e0b";
+        } else {
+          strengthFill.classList.add("strength-strong");
+          strengthText.textContent = "Strong password";
+          strengthText.style.color = "#16a34a";
+        }
+      });
+
+      function calculatePasswordStrength(password) {
+        let strength = 0;
+        if (password.length >= 8) strength++;
+        if (password.length >= 12) strength++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+        if (/\d/.test(password)) strength++;
+        if (/[^a-zA-Z\d]/.test(password)) strength++;
+        return strength;
+      }
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          document
+            .querySelectorAll(".error-message")
+            .forEach((el) => el.classList.remove("show"));
+          document
+            .querySelectorAll("input")
+            .forEach((el) => el.classList.remove("error"));
+
+          let isValid = true;
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (name.length < 2) {
+            document.getElementById("name").classList.add("error");
+            document.getElementById("nameError").classList.add("show");
+            isValid = false;
+          }
+
+          if (!email || !email.includes("@")) {
+            document.getElementById("email").classList.add("error");
+            document.getElementById("emailError").classList.add("show");
+            isValid = false;
+          }
+
+          if (password.length < 6) {
+            document.getElementById("password").classList.add("error");
+            isValid = false;
+          }
+
+          if (password !== confirmPassword) {
+            document.getElementById("confirmPassword").classList.add("error");
+            document.getElementById("confirmError").classList.add("show");
+            isValid = false;
+          }
+
+          if (isValid) {
+            localStorage.setItem("authToken", "demo_token_" + Date.now());
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userName", name);
+
+            if (!localStorage.getItem("expenses")) {
+              localStorage.setItem("expenses", JSON.stringify([]));
+            }
+            if (!localStorage.getItem("monthlyBudget")) {
+              localStorage.setItem("monthlyBudget", "5000");
+            }
+
+            window.location.href = "dashboard.html";
+          }
+        });
+    </script>
+  </body>
+</html>

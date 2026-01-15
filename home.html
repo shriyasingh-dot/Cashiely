@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Green Ledger — Smart Expense Tracking for Students</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== DESIGN SYSTEM ===== */
+      :root {
+        --forest: #2d5016;
+        --sage: #7a9b76;
+        --cream: #faf8f3;
+        --white: #ffffff;
+        --gray-50: #f9fafb;
+        --gray-600: #475569;
+        --gray-900: #0f172a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--gray-900);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ===== A. HEADER (ORIENTATION LAYER) ===== */
+      .header {
+        background: var(--white);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1.25rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--forest);
+        letter-spacing: -0.01em;
+      }
+
+      .header-nav {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: var(--gray-600);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+      }
+
+      .nav-link:hover {
+        color: var(--forest);
+      }
+
+      /* ===== B. HERO SECTION (DECISION ENGINE) ===== */
+      .hero {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 5rem 2rem 4rem;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--forest);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        margin-bottom: 2.5rem;
+        line-height: 1.5;
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: #1f3810;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--forest);
+        border: 2px solid var(--forest);
+      }
+
+      .btn-secondary:hover {
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      /* ===== C. FEATURE HIGHLIGHTS (RATIONAL JUSTIFICATION) ===== */
+      .features {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+      }
+
+      .feature {
+        text-align: left;
+      }
+
+      .feature-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--sage);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--forest);
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .feature-description {
+        font-size: 1rem;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+
+      /* ===== D. TRUST SIGNALS (REASSURANCE LAYER) ===== */
+      .trust {
+        background: var(--white);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 3rem 2rem;
+      }
+
+      .trust-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .trust-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--forest);
+        margin-bottom: 1.5rem;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .trust-item {
+        text-align: center;
+      }
+
+      .trust-item-title {
+        font-weight: 600;
+        color: var(--gray-900);
+        margin-bottom: 0.25rem;
+      }
+
+      .trust-item-text {
+        font-size: 0.9rem;
+        color: var(--gray-600);
+      }
+
+      /* ===== E. CALL-TO-ACTION (CONVERSION LOCK) ===== */
+      .cta-section {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 5rem 2rem;
+        text-align: center;
+      }
+
+      .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--forest);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .cta-text {
+        font-size: 1.125rem;
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+      }
+
+      .cta-button-large {
+        padding: 1.125rem 3rem;
+        font-size: 1.125rem;
+      }
+
+      /* ===== F. FOOTER (CREDIBILITY CLOSURE) ===== */
+      .footer {
+        background: var(--white);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 2.5rem 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .footer-brand {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--forest);
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-tagline {
+        font-size: 0.9rem;
+        color: var(--gray-600);
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-copyright {
+        font-size: 0.85rem;
+        color: var(--gray-600);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.125rem;
+        }
+
+        .cta-group {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .trust-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .cta-title {
+          font-size: 2rem;
+        }
+
+        .header-nav .nav-link:first-child {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- A. HEADER (ORIENTATION LAYER) -->
+    <header class="header">
+      <div class="header-content">
+        <div class="brand">The Green Ledger</div>
+        <nav class="header-nav">
+          <a href="login.html" class="nav-link">Login</a>
+          <a href="register.html" class="btn btn-primary">Get Started</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- B. HERO SECTION (DECISION ENGINE) -->
+    <section class="hero">
+      <h1 class="hero-title">Your money, tracked. Your future, secured.</h1>
+      <p class="hero-subtitle">
+        The simplest way for college students to understand where their money
+        goes — and take control of it.
+      </p>
+
+      <div class="cta-group">
+        <a href="register.html" class="btn btn-primary">Start Tracking Free</a>
+        <a href="login.html" class="btn btn-secondary">Login</a>
+      </div>
+    </section>
+
+    <!-- C. FEATURE HIGHLIGHTS (RATIONAL JUSTIFICATION) -->
+    <section class="features">
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-label">The Problem</div>
+          <h3 class="feature-title">You don't know where your money goes</h3>
+          <p class="feature-description">
+            Textbooks, food, coffee, subscriptions — it adds up fast. Without
+            tracking, you're flying blind.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-label">The Solution</div>
+          <h3 class="feature-title">Log expenses in 10 seconds</h3>
+          <p class="feature-description">
+            No spreadsheets. No complexity. Just enter what you spent, and we'll
+            handle the rest.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-label">The Outcome</div>
+          <h3 class="feature-title">See patterns, make better choices</h3>
+          <p class="feature-description">
+            Visual insights show you exactly where to cut back — and where you
+            can afford to spend.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. TRUST SIGNALS (REASSURANCE LAYER) -->
+    <section class="trust">
+      <div class="trust-content">
+        <h2 class="trust-title">Built specifically for college students</h2>
+
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-item-title">Always Free</div>
+            <div class="trust-item-text">No hidden fees, no premium tiers</div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item-title">Your Data, Your Control</div>
+            <div class="trust-item-text">We don't sell your information</div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item-title">Student-First Design</div>
+            <div class="trust-item-text">Made by students, for students</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E. CALL-TO-ACTION (CONVERSION LOCK) -->
+    <section class="cta-section">
+      <h2 class="cta-title">Ready to take control?</h2>
+      <p class="cta-text">
+        Join thousands of students who've already started tracking smarter.
+      </p>
+      <a href="register.html" class="btn btn-primary cta-button-large"
+        >Create Your Free Account</a
+      >
+    </section>
+
+    <!-- F. FOOTER (CREDIBILITY CLOSURE) -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">The Green Ledger</div>
+        <div class="footer-tagline">
+          Smart expense tracking for the budget-conscious student.
+        </div>
+        <div class="footer-copyright">
+          © 2026 The Green Ledger. Built with intention.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
